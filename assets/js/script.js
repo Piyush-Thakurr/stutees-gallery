@@ -122,21 +122,74 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   });
 
-  // MOBILE REVEAL FALLBACK (Viewport <= 992px)
-  mm.add("(max-width: 992px)", () => {
-    // Instantly reveal all details on mobile to support standard scrolling
-    gsap.set(".gallery-wall", { scale: 1 });
-    gsap.set([".product-card", ".artwork-shop-details", ".grid-block"], {
-      opacity: 1,
-      y: 0,
-      visibility: "visible"
-    });
-    strokes.forEach(stroke => {
-      stroke.style.strokeDashoffset = 0;
-    });
-    document.getElementById("scroll-progress").style.width = "100%";
+  // MOBILE — Auto-play brush reveal on page load
+mm.add("(max-width: 992px)", () => {
+  // Set initial states
+  gsap.set(".gallery-wall", { scale: 1 });
+  gsap.set([".product-card", ".artwork-shop-details", ".grid-block"], {
+    opacity: 0,
+    y: 30,
+    visibility: "hidden"
   });
 
+  // Progress bar fills as animation plays
+  document.getElementById("scroll-progress").style.width = "0%";
+
+  // Master mobile timeline — plays automatically on load
+  const mobileTl = gsap.timeline({ delay: 0.8 });
+
+  // Step 1: Fade out intro overlay (0.8s)
+  mobileTl.to(".intro-overlay", {
+    opacity: 0,
+    y: -20,
+    duration: 0.8,
+    ease: "power2.out",
+    onComplete: () => {
+  document.querySelector(".intro-overlay").style.pointerEvents = "none";
+  document.querySelector(".intro-overlay").style.visibility = "hidden";
+  document.querySelector(".intro-overlay").style.height = "0";
+}
+  });
+
+  // Step 2: Draw brush strokes one by one (2.5s)
+  mobileTl.to(strokes, {
+    strokeDashoffset: 0,
+    duration: 2.5,
+    stagger: {
+      each: 0.18,
+      from: "start"
+    },
+    ease: "power2.inOut"
+  }, "-=0.2");
+
+  // Step 3: Fade in product cards with stagger (1s)
+  mobileTl.to([".product-card", ".grid-block"], {
+    opacity: 1,
+    y: 0,
+    visibility: "visible",
+    duration: 0.8,
+    stagger: 0.12,
+    ease: "power3.out"
+  }, "-=0.3");
+
+  // Step 4: Fade in artwork shop details
+  mobileTl.to(".artwork-shop-details", {
+    opacity: 1,
+    y: 0,
+    visibility: "visible",
+    duration: 0.7,
+    ease: "power2.out"
+  }, "-=0.4");
+
+  // Step 5: Fill progress bar as animation completes
+  mobileTl.to({}, {
+    duration: 0.3,
+    onUpdate: function() {
+      const p = mobileTl.progress() * 100;
+      document.getElementById("scroll-progress").style.width = p + "%";
+    }
+  });
+});
 
   /* --- INTERACTIVE ACTION LISTENERS --- */
 

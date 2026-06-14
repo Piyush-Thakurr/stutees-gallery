@@ -687,49 +687,141 @@ body {
 
 /* MOBILE RESPONSIVE ADAPTATIONS */
 @media (max-width: 992px) {
+
+ /* Header tighter on mobile */
+.gallery-header {
+  padding: 0 14px;
+  gap: 8px;
+}
+
+
+.header-right {
+  gap: 12px;
+}
+
+ 
+  .status-indicator {
+  font-size: 8px;
+  padding: 4px 8px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+
+  .cart-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  /* Intro */
   .intro-overlay {
-    height: 70vh;
-    position: relative;
-    padding-top: 120px;
-  }
-
+  height: auto;
+  min-height: 60vh;
+  position: fixed;
+  padding: var(--header-height) 24px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
   .intro-title {
-    font-size: 36px;
+    font-size: clamp(28px, 8vw, 42px);
+  }
+  .intro-subtitle {
+    font-size: 13px;
+    padding: 0 8px;
   }
 
+  /* Gallery wall */
   .gallery-wall {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    padding: 20px;
-  }
+  grid-template-columns: 1fr;
+  gap: 24px;
+  padding: 20px 16px;
+  margin-top: 0;
+  width: 100%;
+}
+
+/* First card breathing room below fixed header */
+.gallery-wall {
+  padding-top: calc(var(--header-height) + 16px);
+}
 
   .product-col {
-    gap: 24px;
+    gap: 20px;
   }
 
-  .product-card {
-    height: auto;
-    max-width: 450px;
+  /* Force all hidden elements visible on mobile */
+  
+
+  /* Canvas white border fix */
+.canvas-frame {
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+  .canvas-svg {
     width: 100%;
-    margin: 0 auto;
+    height: auto;
   }
 
+  /* Artwork details below canvas */
+  .artwork-shop-details {
+    padding: 0 8px;
+  }
+  .artwork-title {
+    font-size: 22px;
+  }
+  .artwork-price {
+    font-size: 20px;
+  }
+
+  /* Product cards */
+  .product-card {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    height: auto;
+  }
   .card-image-wrapper {
     height: 180px;
   }
-
-  .grid-block {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
+  .card-footer {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .btn {
+    font-size: 9px;
+    padding: 7px 12px;
   }
 
-  .artwork-shop-details {
-    opacity: 1 !important;
-    transform: none !important;
-  }
+  /* Footer headings smaller */
+.footer-col-title {
+  font-size: 11px;
+  letter-spacing: 1.5px;
 }
 
+.footer-brand-strip {
+  padding: 24px 16px;
+}
+
+}
+
+/* Extra small phones */
+@media (max-width: 400px) {
+  .gallery-wall {
+    padding: 12px;
+    gap: 16px;
+  }
+  .artwork-title {
+    font-size: 18px;
+  }
+  .logo {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+}
 
 /* ============================================================
    FOOTER SECTION — Contrasting warm parchment / ivory theme
