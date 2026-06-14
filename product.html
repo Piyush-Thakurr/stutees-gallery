@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artwork Details - Stutee's Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/index.css">
+  <style>
+    /* Details Page Content Constraints */
+    .details-container {
+      max-width: 1300px;
+      margin: var(--header-height) auto 0;
+      padding: 60px 40px;
+      display: flex;
+      gap: 60px;
+      align-items: center;
+      min-height: calc(100vh - var(--header-height));
+      position: relative;
+      z-index: 2;
+    }
+    
+    .details-image-wrapper {
+      flex: 1.1;
+      max-height: 75vh;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    
+    .details-image-wrapper img {
+      width: 100%;
+      max-width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 2px;
+      display: block;
+    }
+    
+    .details-info {
+      flex: 0.9;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--color-accent);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: var(--transition-smooth);
+    }
+    
+    .back-link:hover {
+      color: var(--color-accent-hover);
+      transform: translateX(-4px);
+    }
+    
+    .details-info h1 {
+      font-family: var(--font-serif);
+      font-size: 46px;
+      font-weight: 400;
+      color: var(--color-text-main);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    
+    .details-price {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      color: var(--color-accent);
+      margin-bottom: 24px;
+      font-weight: 500;
+      display: block;
+    }
+    
+    .details-description {
+      font-size: 14px;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+    
+    @media (max-width: 992px) {
+      .details-container {
+        flex-direction: column;
+        padding: 40px 24px;
+        margin-top: calc(var(--header-height) + 20px);
+        gap: 40px;
+      }
+      .details-image-wrapper {
+        width: 100%;
+        max-height: 50vh;
+      }
+      .details-image-wrapper img {
+        max-height: 45vh;
+      }
+      .details-info h1 {
+        font-size: 32px;
+      }
+    }
+    /* Fix Toast Visibility Hook */
+    .toast-notification {
+      position: fixed;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-bg-dark);
+      border: 1px solid var(--color-accent);
+      color: var(--color-text-main);
+      padding: 16px 32px;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      z-index: 9999;
+      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .toast-notification.show {
+      bottom: 40px;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="gallery-header">
+    <div class="logo">MADE WITH<span>LOVE</span></div>
+    <div class="header-right">
+      <span class="status-indicator">Exhibition Live</span>
+      <div class="cart-icon" aria-label="Shopping Cart">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span class="cart-badge" id="details-cart-badge">0</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="spotlight"></div>
+
+  <main class="details-container">
+    <div class="details-image-wrapper">
+      <img id="display-image" src="" alt="Exhibition View">
+    </div>
+
+   <div class="details-info">
+      <a href="index.html" class="back-link">← Back to Gallery</a>
+      <h1 id="display-title">Loading Piece...</h1>
+      <span id="display-price" class="details-price">₹0.00</span>
+      <p id="display-description" class="details-description">Accessing gallery archive records...</p>
+      
+      <button class="btn btn-primary add-to-cart" id="details-cart-btn" data-name="" data-price="">Add to Cart</button>
+    </div>
+  </main>
+
+  <div class="toast-notification" id="details-toast" role="alert">
+    Added to cart successfully.
+  </div>
+
+  <script src="assets/js/auth.js"></script>
+  <script>
+    // 1. Data Store containing all card info matching your layout grid image links
+    const artworkData = {
+
+
+
+
+
+        "center": {
+
+        title: "Sunset Majesty on Lake Peak",
+
+        desc: "The ultimate centerpiece of the exhibition. A breathtaking, premium original oil painting on large format canvas. Features rich, multi-layered textures capturing the divine glow of an absolute dusk settling across sacred peaks. Hand-signed by the artist.",
+
+        price: "3,850.00",
+
+        img: "assets/images/imgfinal.jpeg" // 🌟 Points directly to your unmasked centerpiece image file!
+
+      },
+
+
+
+      "1": {
+
+        title: "Lotus Eyes of Grace",
+
+        desc: "Dive deep into the mesmerizing gaze of the divine protector.",
+
+        price: "1,450.00",
+
+        img: "assets/images/img9.jpeg"
+
+      },
+
+      "2": {
+
+        title: "The Cosmic Herdsman",
+
+        desc: "Stealing hearts and butter alike, his innocent smile radiates a warmth that brightens the entire universe.",
+
+        price: "899.00",
+
+        img: "assets/images/img7.jpeg"
+
+      },
+
+      "3": {
+
+        title: "Artistic Representation of the Lord",
+
+        desc: " Painted with deep textures, this artwork embodies eternal love, offering a calm sanctuary from the chaos of the world.",
+
+        price: "1,280.00",
+
+        img: "assets/images/img11.jpeg"
+
+      },
+
+      "4": {
+
+        title: "Little Makhan Chor",
+
+        desc: "Adorned with peacock feathers and surrounded by his beloved cows, Krishna steps softly across the banks of the Yamuna—bringing divine joy and timeless magic to every home.",
+
+        price: "820.00",
+
+        img: "assets/images/img8.jpeg"
+
+      }
+
+    };
+
+   // 2. Read parameters and render card states instantly
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    let activeItem = null;
+
+    if (productId && artworkData[productId]) {
+      activeItem = artworkData[productId];
+      document.getElementById('display-title').textContent = activeItem.title;
+      document.getElementById('display-description').textContent = activeItem.desc;
+      document.getElementById('display-price').textContent = "₹" + activeItem.price;
+      document.getElementById('display-image').src = activeItem.img;
+      document.getElementById('display-image').alt = activeItem.title;
+
+      // Feed properties directly into the tracking buttons
+      const actionBtn = document.getElementById('details-cart-btn');
+      actionBtn.setAttribute('data-name', activeItem.title);
+      actionBtn.setAttribute('data-price', activeItem.rawPrice);
+    } else {
+      window.location.href = "index.html";
+    }
+
+    // ==========================================
+    // 🛍️ SHARED SESSION CART ENGINE
+    // ==========================================
+    const badge = document.getElementById('details-cart-badge');
+    const toast = document.getElementById('details-toast');
+    const cartBtn = document.getElementById('details-cart-btn');
+    const cartIcon = document.querySelector('.cart-icon');
+
+    // Helper: load from localStorage (preferred) or sessionStorage
+    function loadCart() {
+      try {
+        const ls = localStorage.getItem('sc_cart');
+        if (ls) return JSON.parse(ls);
+        const ss = sessionStorage.getItem('sc_cart');
+        return ss ? JSON.parse(ss) : [];
+      } catch(e) { return []; }
+    }
+    function persistCart(arr) {
+      const s = JSON.stringify(arr);
+      localStorage.setItem('sc_cart', s);
+      sessionStorage.setItem('sc_cart', s);
+    }
+
+    let productSessionCart = loadCart();
+    badge.textContent = productSessionCart.reduce((a, i) => a + (i.qty || 1), 0);
+
+    // Handle adding items to the shared system array
+    cartBtn.addEventListener('click', () => {
+      if (activeItem) {
+        const existing = productSessionCart.find(i => (i.title || i.name) === activeItem.title);
+        if (existing) { existing.qty = (existing.qty || 1) + 1; }
+        else { productSessionCart.push({ name: activeItem.title, title: activeItem.title, qty: 1 }); }
+        
+        // Save back to both storages instantly
+        persistCart(productSessionCart);
+        badge.textContent = productSessionCart.reduce((a, i) => a + (i.qty || 1), 0);
+
+        // Fire toast notification window action
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2500);
+      }
+    });
+
+    // Make the header cart icon clickable to redirect to checkout view
+    if (cartIcon) {
+      cartIcon.style.cursor = "pointer";
+      cartIcon.addEventListener('click', () => {
+        if (productSessionCart.length > 0) {
+          persistCart(productSessionCart);
+          window.location.href = "checkout.html";
+        } else {
+          toast.textContent = "Your cart is empty — add items to begin checkout.";
+          toast.classList.add('show');
+          setTimeout(() => {
+            toast.classList.remove('show');
+            toast.textContent = "Added to cart successfully."; // Reset message text state
+          }, 2500);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

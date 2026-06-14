@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stutee's Art Gallery - Interactive Exhibition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/index.css">
+</head>
+
+<body>
+
+  <!-- FIXED HEADER: Fits perfectly at the top of the viewport -->
+  <header class="gallery-header">
+    <div class="logo">STUOMBRE<span> 💗 </span></div>
+    <div class="header-right">
+      <span class="status-indicator">Exhibition Live</span>
+      <div class="cart-icon" aria-label="Shopping Cart">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span class="cart-badge">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div class="progress-container">
+    <div class="progress-bar" id="scroll-progress"></div>
+  </div>
+
+  <!-- INTRO HERO OVERLAY (Fades out when scrolling begins) -->
+  <div class="intro-overlay" id="intro-overlay">
+    <div class="intro-particles"></div>
+    <div class="intro-content">
+      <div class="intro-eyebrow">Welcome to the Exhibition</div>
+      <h1 class="intro-title">Stutee's Collection</h1>
+      <p class="intro-subtitle">Scroll down to witness the brushstroke reveal and let the canvas speak for itself.</p>
+      <div class="intro-divider"></div>
+      <div class="scroll-arrow">
+        <span class="scroll-label">Scroll to Begin</span>
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <polyline points="19 12 12 19 5 12"></polyline>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCROLLABLE TRACK CONTAINER -->
+  <main class="scroll-track">
+    <!-- STICKY VIEWPORT -->
+    <div class="sticky-viewport">
+
+      <!-- Ambient Spotlight Lighting behind the gallery wall -->
+      <div class="spotlight"></div>
+
+      <!-- Center Gallery Wall Alignment Container -->
+      <div class="gallery-container">
+
+        <!-- Gallery Wall Grid -->
+        <div class="gallery-wall">
+
+          <!-- LEFT COLUMN: Secondary products (invisible initially) -->
+          <div class="product-col left-col">
+            
+            <!-- Product Card 1 -->
+            <div class="grid-block product-card" id="card-1" data-id="1" style="cursor: pointer;">
+              <div class="card-image-wrapper">
+                <img src="assets/images/img9.jpeg" class="card-img-placeholder" alt="Lotus Eyes of Grace">
+                <span class="card-tag">Best Seller</span>
+              </div>
+              <div class="card-info">
+                <h3>Lotus Eyes of Grace</h3>
+                <p class="card-desc">Dive deep into the mesmerizing gaze of the divine protector.</p>
+                <div class="card-footer">
+                  <span class="price">₹1,450.00</span>
+                  <button class="btn btn-secondary add-to-cart" data-name="Lotus Eyes of Grace" data-price="1450">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="grid-block product-card" id="card-2" data-id="2" style="cursor: pointer;">
+              <div class="card-image-wrapper">
+                <img src="assets/images/img7.jpeg" class="card-img-placeholder" alt="The Cosmic Herdsman">
+                <span class="card-tag">Collector Spec</span>
+              </div>
+              <div class="card-info">
+                <h3>The Cosmic Herdsman</h3>
+                <p class="card-desc">The only one you truly need.</p>
+                <div class="card-footer">
+                  <span class="price">₹899.00</span>
+                  <button class="btn btn-secondary add-to-cart" data-name="The Cosmic Herdsman" data-price="899">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CENTER COLUMN: Canvas Frame + Shop Details (Scales down, always visible) -->
+         <div class="product-col center-col central-canvas-container" data-id="center" style="cursor: pointer;">
+            <div class="canvas-frame">
+
+              <!-- Unified Single-SVG Layout: Houses frame, painting, and mask -->
+              <svg viewBox="0 0 1614 656" width="100%" height="100%" class="canvas-svg" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <!-- SVG Mask using custom thick brush stroke paths -->
+                  <mask id="brush-mask" maskUnits="userSpaceOnUse">
+                    <!-- Black rect hides the painting initially -->
+                    <rect x="-100" y="-100" width="1814" height="856" fill="black" />
+
+                    <!-- Horizontal organic paint lines -->
+                    <path class="brush-stroke" d="M -50 80 Q 800 20, 1664 80" fill="none" stroke="white" stroke-width="180" stroke-linecap="round" stroke-linejoin="round" />
+                    <path class="brush-stroke" d="M -50 190 Q 800 250, 1664 190" fill="none" stroke="white" stroke-width="180" stroke-linecap="round" stroke-linejoin="round" />
+                    <path class="brush-stroke" d="M -50 300 Q 800 240, 1664 300" fill="none" stroke="white" stroke-width="180" stroke-linecap="round" stroke-linejoin="round" />
+                    <path class="brush-stroke" d="M -50 410 Q 800 470, 1664 410" fill="none" stroke="white" stroke-width="180" stroke-linecap="round" stroke-linejoin="round" />
+                    <path class="brush-stroke" d="M -50 520 Q 800 460, 1664 520" fill="none" stroke="white" stroke-width="180" stroke-linecap="round" stroke-linejoin="round" />
+                    <path class="brush-stroke" d="M -50 600 Q 800 660, 1664 600" fill="none" stroke="white" stroke-width="180" stroke-linecap="round" stroke-linejoin="round" />
+
+                    <!-- Vertical texture and cross-hatch strokes -->
+                    <path class="brush-stroke" d="M 120 -50 Q 80 328, 160 700" fill="none" stroke="white" stroke-width="180" stroke-linecap="round" stroke-linejoin="round" />
+                    <path class="brush-stroke" d="M 380 -50 Q 420 328, 340 700" fill="none" stroke="white" stroke-width="180" stroke-linecap="round" stroke-linejoin="round" />
+                    <path class="brush-stroke" d="M 650 -50 Q 610 328, 690 700" fill="none" stroke="white" stroke-width="180" stroke-linecap="round" stroke-linejoin="round" />
+                    <path class="brush-stroke" d="M 920 -50 Q 960 328, 880 700" fill="none" stroke="white" stroke-width="180" stroke-linecap="round" stroke-linejoin="round" />
+                    <path class="brush-stroke" d="M 1190 -50 Q 1150 328, 1230 700" fill="none" stroke="white" stroke-width="180" stroke-linecap="round" stroke-linejoin="round" />
+                    <path class="brush-stroke" d="M 1460 -50 Q 1500 328, 1420 700" fill="none" stroke="white" stroke-width="180" stroke-linecap="round" stroke-linejoin="round" />
+
+                    <!-- Diagonal fills for texture -->
+                    <path class="brush-stroke" d="M -50 -50 L 1664 706" fill="none" stroke="white" stroke-width="180" stroke-linecap="round" stroke-linejoin="round" />
+                    <path class="brush-stroke" d="M 1664 -50 L -50 706" fill="none" stroke="white" stroke-width="180" stroke-linecap="round" stroke-linejoin="round" />
+                  </mask>
+                </defs>
+
+                <!-- Base Canvas Frame Layer -->
+                <image href="assets/images/watermarked_img_3873958819143333071.png" x="0" y="0" width="1614" height="656" />
+
+                <!-- The Actual Painting with Brush Reveal Mask -->
+                <image href="assets/images/imgfinal.jpeg" x="0" y="0" width="1614" height="656" mask="url(#brush-mask)" />
+              </svg>
+
+            </div>
+
+            <!-- Artwork Store Details Panel -->
+            <div class="artwork-shop-details">
+              <h2 class="artwork-title">Sunset Majesty on Lake Peak</h2>
+              <div class="artwork-meta">
+                <span class="artwork-medium">Original Oil on Canvas · Hand-Signed</span>
+                <span class="artwork-edition">1 of 1 · Certificate of Authenticity Included</span>
+              </div>
+              <div class="artwork-price-row">
+                <span class="artwork-price">₹3,850.00</span>
+                <button class="btn btn-primary buy-original" data-name="Sunset Majesty on Lake Peak" data-price="3850">Inquire to Acquire</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: Secondary products -->
+          <div class="product-col right-col">
+
+            <!-- Product Card 3 -->
+            <div class="grid-block product-card" id="card-3" data-id="3" style="cursor: pointer;">
+              <div class="card-image-wrapper">
+                <img src="assets/images/img11.jpeg" class="card-img-placeholder" alt="Artistic Representation of the Lord">
+                <span class="card-tag">New Arrival</span>
+              </div>
+              <div class="card-info">
+                <h3>Artistic Representation of the Lord</h3>
+                <p class="card-desc">Painted with deep textures, this artwork embodies eternal love.</p>
+                <div class="card-footer">
+                  <span class="price">₹1,280.00</span>
+                  <button class="btn btn-secondary add-to-cart" data-name="Artistic Representation of the Lord" data-price="1280">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="grid-block product-card" id="card-4" data-id="4" style="cursor: pointer;">
+              <div class="card-image-wrapper">
+                <img src="assets/images/img8.jpeg" class="card-img-placeholder" alt="Little Makhan Chor">
+                <span class="card-tag">Pookie</span>
+              </div>
+              <div class="card-info">
+                <h3>Little Makhan Chor</h3>
+                <p class="card-desc">Adorned with peacock feathers and surrounded by his beloved cows.</p>
+                <div class="card-footer">
+                  <span class="price">₹820.00</span>
+                  <button class="btn btn-secondary add-to-cart" data-name="Little Makhan Chor" data-price="820">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- /gallery-wall -->
+      </div> <!-- /gallery-container -->
+
+    </div> <!-- /sticky-viewport -->
+  </main>
+
+  <!-- ======================== FOOTER SECTION ======================== -->
+  <footer class="site-footer">
+
+    <!-- Footer Top: Brand + Tagline -->
+    <div class="footer-brand-strip">
+      <div class="footer-logo">STUOMBRE<span> 💗 </span></div>
+      <p class="footer-tagline">Original fine art, thoughtfully collected and beautifully presented.</p>
+    </div>
+
+    <!-- Footer Main Grid -->
+    <div class="footer-main">
+
+      <!-- About the Studio -->
+      <div class="footer-col footer-about">
+        <h4 class="footer-col-title">The Studio</h4>
+        <p class="footer-about-text">Stutee's Collection is an independent fine-art gallery dedicated to original oil paintings, archival prints, and exclusive collector editions. Every piece tells a story born from the artist's soul.</p>
+        <div class="footer-social-links">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Pinterest">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.428 1.808-2.428.853 0 1.267.64 1.267 1.408 0 .858-.546 2.14-.828 3.33-.236.995.499 1.806 1.476 1.806 1.771 0 3.132-1.867 3.132-4.562 0-2.387-1.715-4.056-4.163-4.056-2.838 0-4.503 2.128-4.503 4.33 0 .858.33 1.776.741 2.279a.3.3 0 0 1 .069.284c-.076.315-.245.995-.278 1.134-.045.183-.15.221-.345.133-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.966-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Twitter / X">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.4 5.4 4 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Collection</h4>
+        <ul class="footer-links">
+          <li><a href="#">Original Paintings</a></li>
+          <li><a href="#">Archival Art Prints</a></li>
+          <li><a href="#">Gallery Wrap Canvas</a></li>
+          <li><a href="#">Collector Monograph</a></li>
+          <li><a href="#">VIP Exhibition Access</a></li>
+          <li><a href="#">Commission a Piece</a></li>
+        </ul>
+      </div>
+
+      <!-- Gallery Info -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Gallery</h4>
+        <ul class="footer-links">
+          <li><a href="#">About the Artist</a></li>
+          <li><a href="#">Exhibition Schedule</a></li>
+          <li><a href="#">Private Viewings</a></li>
+          <li><a href="#">Collector Program</a></li>
+          <li><a href="#">Press &amp; Media</a></li>
+          <li><a href="#">Shipping &amp; Returns</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Us -->
+      <div class="footer-col footer-contact-col">
+        <h4 class="footer-col-title">Contact Us</h4>
+
+        <div class="contact-entry">
+          <div class="contact-label">General Enquiries</div>
+          <a href="mailto:hello@stuteescollection.art" class="contact-email">hello@stuteescollection.art</a>
+        </div>
+
+        <div class="contact-entry">
+          <div class="contact-label">Acquisition &amp; Sales</div>
+          <a href="mailto:acquire@stuteescollection.art" class="contact-email">acquire@stuteescollection.art</a>
+        </div>
+
+        <div class="contact-entry">
+          <div class="contact-label">Press &amp; Partnerships</div>
+          <a href="mailto:press@stuteescollection.art" class="contact-email">press@stuteescollection.art</a>
+        </div>
+
+        <div class="contact-entry">
+          <div class="contact-label">Studio Location</div>
+          <span class="contact-address">New Delhi, India · By Appointment</span>
+        </div>
+
+        <a href="mailto:hello@stuteescollection.art" class="btn btn-footer-cta">Send a Message</a>
+      </div>
+
+    </div>
+
+    <!-- Footer Credits Bar -->
+    <div class="footer-credits-bar">
+      <div class="footer-credits-left">
+        <div class="credit-badge">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <span>Artist: <strong>Stutee</strong></span>
+        </div>
+        <div class="credit-badge">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <span>Web Design: <strong>Piyush</strong></span>
+        </div>
+      </div>
+      <div class="footer-credits-right">
+        <span>&copy; 2026 Stutee's Collection. All rights reserved.</span>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Notification Toast Banner -->
+  <div class="toast-notification" id="toast" role="alert">
+    Added to cart successfully.
+  </div>
+
+  <!-- Standard CDN libraries for GSAP & ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/script.js"></script>
+</body>
+
+</html>
