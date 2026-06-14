@@ -1063,8 +1063,8 @@
     "The Cosmic Herdsman":                  { price: 899,  img: "img7.jpeg"     },
     "Artistic Representation of the Lord":  { price: 1280, img: "img11.jpeg"    },
     "Little Makhan Chor":                   { price: 820,  img: "img8.jpeg"     },
-    "The Midnight Flutist":                 { price: 3500, img: "imgfinal.jpeg" },
-    "Sunset Majesty on Lake Peak":          { price: 3850, img: "imgfinal.jpeg" }
+    "The Midnight Flutist":                 { price: 3850, img: "imgfinal.jpeg" },
+    
   };
 
   /* ─── RENDER CART TAB ─── */
