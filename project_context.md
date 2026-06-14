@@ -172,4 +172,6 @@ For best results use VS Code's **Live Server** extension (right-click `index.htm
 
 ---
 
+also need to modify the web for proper working on mobiles
+
 *Last updated: June 2026 — Frontend complete, Git connected, backend roadmap defined.*
