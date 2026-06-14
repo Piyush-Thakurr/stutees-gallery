@@ -1059,11 +1059,11 @@
 
   /* ─── CATALOG for price lookup ─── */
   const CATALOG = {
-    "Lotus Eyes of Grace":                  { price: 1450, img: "img9.jpeg"     },
-    "The Cosmic Herdsman":                  { price: 899,  img: "img7.jpeg"     },
-    "Artistic Representation of the Lord":  { price: 1280, img: "img11.jpeg"    },
-    "Little Makhan Chor":                   { price: 820,  img: "img8.jpeg"     },
-    "The Midnight Flutist":                 { price: 3850, img: "imgfinal.jpeg" },
+    "Lotus Eyes of Grace":                  { price: 1450, img: "assets/images/img9.jpeg"     },
+    "The Cosmic Herdsman":                  { price: 899,  img: "assets/images/img7.jpeg"     },
+    "Artistic Representation of the Lord":  { price: 1280, img: "assets/images/img11.jpeg"    },
+    "Little Makhan Chor":                   { price: 820,  img: "assets/images/img8.jpeg"     },
+    "The Midnight Flutist":                 { price: 3850, img: "assets/images/imgfinal.jpeg" },
     
   };
 

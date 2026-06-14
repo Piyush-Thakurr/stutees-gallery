@@ -11,11 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Default catalog items with prices (matching your updated main gallery)
   const CATALOG = {
-    "Lotus Eyes of Grace":                  { price: 1450, tag: "Stretched Canvas",  img: "img9.jpeg"     },
-    "The Cosmic Herdsman":                  { price: 899,  tag: "Fine Art Print",    img: "img7.jpeg"     },
-    "Artistic Representation of the Lord":  { price: 1280, tag: "Fine Art Print",    img: "img11.jpeg"    },
-    "Little Makhan Chor":                   { price: 820,  tag: "Fine Art Print",    img: "img8.jpeg"     },
-    "The Midnight Flutist":                 { price: 3500, tag: "Original Painting", img: "imgfinal.jpeg" }
+    "Lotus Eyes of Grace":                  { price: 1450, tag: "Stretched Canvas",  img: "assets/images/img9.jpeg"     },
+    "The Cosmic Herdsman":                  { price: 899,  tag: "Fine Art Print",    img: "assets/images/img7.jpeg"     },
+    "Artistic Representation of the Lord":  { price: 1280, tag: "Fine Art Print",    img: "assets/images/img11.jpeg"    },
+    "Little Makhan Chor":                   { price: 820,  tag: "Fine Art Print",    img: "assets/images/img8.jpeg"     },
+    "The Midnight Flutist":                 { price: 3500, tag: "Original Painting", img: "assets/images/imgfinal.jpeg" }
   };
 
   // Load cart from sessionStorage (set by main gallery script.js)
